@@ -1,0 +1,191 @@
+% !TEX encoding = UTF-8 Unicode
+% !TEX root = ./main.tex
+% !TeX program = luatex
+% !BIB TS-program = biber
+
+% This file is MIT-Thesis.tex, a LaTeX template for formatting an MIT thesis with the mitthesis class.
+%
+% Version: 1.14, 2024/07/19
+%
+% Author: John H. Lienhard, copyright 2024. Reuse under the MIT license: https://ctan.org/license/mit 
+
+% Documentation is here: https://ctan.org/pkg/mitthesis
+
+%% Don't modify the \DocumentMetadata command unless you know what it does. 
+%% If this command throws an "undefined" error, your latex system is out of date: try commenting this command out.
+\DocumentMetadata{ 
+	pdfstandard = a-2b,
+	pdfversion  = 1.7,
+	lang		= en-US,
+%	 pdfversion  = 2.0,
+%    pdfstandard = a-4,
+%	 debug		= {xmp-export}, % uncomment to output a separate xmpi file showing the metadata
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[twoside, mydesign, fontset=heros-stix2 ,]{mitthesis} %,fontset=libertine, fontset=newtx-sans-text, fontset=heros-stix2, fontset=stix2
+%
+% option [twoside]		gives facing-page behavior for printing; omitting twoside will eliminate even-numbered blank pages.
+% option [lineno]	 	provides line numbers, as for editing
+% option [mydesign] 	loads packages for color, title and list formats, margins, or captions: edit mydesign.tex to change defaults.
+% option [fontset] is a keyvalue which can be:
+%					 	for pdftex or unicode engines:  defaultfonts, libertine, lucida
+%					 	for pdftex only: 				fira-newtxsf, newtx, newtx-sans-text
+%						for unicode engines (luatex):	heros-stix2, stix2, termes, termes-stix2
+%					 	if no key value is given, fonts default to CMR (pdftex) or LMR (unicode), i.e., "the LaTeX font".
+%					 	You can edit the fontset files or you can write your own, myfonts.tex, and do [fontset=myfonts].
+%						If you are using multiple languages, load the babel package in your fontset file, before the fonts.
+
+\usepackage{preamble}
+
+\begin{document}
+
+%%% edit the following commands to match your thesis %%%%%%%%%%
+
+\title{Programming Methodologies and Applications on a Multipurpose Reconfigurable Integrated Photonic Platform}
+
+% \Author{Author full name}{Author department}[Author's first PREVIOUS degree][Author's second PREVIOUS degree][...
+% Note that third, fourth, fifth, and sixth arguments are optional [] and may be omitted
+
+% note on names: most of the following names are made up; Silas Holman was a physics professor at MIT in the 19th century.
+
+\Author{David R.
+	Sánchez-Jácome}{Faculty of Telecommunications Engineering}
+
+\Degree{Doctor of Philosophy}{Faculty of Telecommunications Engineering}
+% \Author{Luisa Hernández}{Department of Research}[B.S. Mechanical Engineering, UCLA, 2018][M.S. Stellar Interiors, Vulcan Science Academy, 2020]% \Author{Thurston Howell III}{Department of Economics}[MBA, Ferengi School of Management, 2022]% Use once for each degree fulfilled by thesis% For two degrees from one department, leave the department argument blank for the second degree {}.%\Degree{Master of Science in Physics}{}%\Degree{Bachelor of Science in Mechanical Engineering}{Department of Mechanical Engineering}% If there is more than one supervisor, use the \Supervisor command for each.
+\Supervisor{Daniel
+	Pérez-López}{Chief Technology Officer of iPronics}
+\Supervisor{José
+	Capmany-Francoy}{Professor of Telecommunications Engineering}
+% \Supervisor{José Capmany Francoy}{Professor of Physics, and \\ \> Professor of Something Else}
+% \Supervisor{Secunda Castor}{Professor of Research}
+% \Supervisor{Quintus Castor}{Professor of Log Dams}
+
+% Professor who formally accepts theses for your department (e.g., the Graduate Officer, Professor Sméagol,...)
+% If more than one department, use more than once
+\Acceptor{Pascual Muñoz Muñoz}{Professor of Telecommunications Engineering}{}%{Undergraduate Officer, Department of Physics}
+% \Acceptor{Tertius Castor}{Professor of Log Dams}{Graduate Officer, Department of Research}
+% \Acceptor{Quarta Castor}{Professor of Lodge Building}{Graduate Officer, Department of Mechanical Engineering}
+%% If you need to reduce vertical space, put the acceptor title in the second argument and leave the third blank, {}.
+
+% Usage: \DegreeDate{Month}{year}
+% Valid degree months are February, May, June, or September
+\DegreeDate{July}{2025}
+
+% Date that final thesis is submitted to department
+\ThesisDate{\today}
+
+%%%%%%  Choose whether to have a CREATIVE COMMONS License  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% If you are using a cc license, put details of your cc license here. 
+% Omit this command if you are not using a cc license.
+%
+\CClicense{CC BY-NC-ND 4.0}{https://creativecommons.org/licenses/by-nc-nd/4.0/}
+%
+
+%%%%%%%  Solutions for overflowing titlepage  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% If your title page is overflowing (from too many names, degrees, etc.):
+%
+% (a) you can reduce the 12pt and 18pt skips between various blocks to 6pt with this command:
+%
+% \Tighten
+%
+% (b)  you can scale down the Signature block at the bottom with this command:
+%
+% \SignatureBlockSize{\small}  %or this one \SignatureBlockSize{\footnotesize}
+%
+% (c) you can put the acceptor name and title onto two lines, rather than three like this:
+%
+% \Acceptor{Tertius Castor}{Professor and Graduate Officer, Department of Research}{}
+%
+% (d) you can change the font size of the author name[s] with
+%
+%	\AuthorNameSize{\normalsize}
+%
+% (e) and you can omit any previous degrees from the title page, instead mentioning them in the biographical sketch
+
+% Also, if you prefer to keep the text toward the top of the page with most white space at the bottom, you
+% can use this command to squash all of the vertical glue (stretchy space) with this command:
+%
+% \Squash 
+%
+% This command is useful when the text has not already reach the bottom of the page, since the glue gets squashed automatically
+% when the page is too full.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% Make titlepage
+\SuppressMonthError
+\maketitle*
+
+%%%%%%%%% Contents that you need to write follows! %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \includeonly{acknowledgments,biography,chapter1,chapter2,...,appendixa,...} 
+%   for usage of includeonly, see https://latexref.xyz/_005cinclude-_0026-_005cincludeonly.html
+
+%%% Frontmatter (write this material in the mentioned files)  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\include{quote}% Manuscript quote
+
+% Add page with reviewers info
+\include{reviewers}
+
+% The abstract environment creates all the required headings and footers. 
+% You only need to the text of the abstract in the file abstract.tex
+\begin{abstract}
+	\input{abstract.tex}% use \input rather than \include because we're inside an environment
+\end{abstract}
+
+\include{resumen}% Resumen and resum in Spanish and Valencia
+
+\include{acknowledgments}% acknowledgments.tex (.tex extension is presumed by \include) 
+
+\include{biography}% biography.tex (optional, see https://libraries.mit.edu/distinctive-collections/thesis-specs/#format)
+
+%%% Table of contents and lists of stuff (delete unused lists, i.e., if no tables or figures) %%%%%
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+%%% Chapters of thesis  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% If you want to use "double spacing", you should start here...
+
+\include{ch1-intro}% .tex extension is presumed
+\include{ch2-pip}
+\include{ch3-apps}
+\include{ch4-puo}
+\include{ch5-discussion}
+\include{merits}
+\include{about}
+
+%%% Appendicies of thesis  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+% \include{app1-thermal}
+% \include{app2-onn}
+
+%%% Bibliography (biblatex)  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\defbibheading{bibintoc}{\chapter*{#1}\addcontentsline{toc}{backmatter}{\refname}}
+% this sets the title of contents name for bibliography to \refname (= References)
+% change "backmatter" to "chapter" if you prefer a bold face entry in the table of contents
+
+\printbibliography[title={\refname},heading=bibintoc]
+
+% biblatex also supports chapter-by-chapter bibliography, https://tex.stackexchange.com/a/296502/119566
+% see the biblatex manual, section 3.14.3
+
+%%%% Option for natbib %%%%%%%%%%%%%
+
+%%   use an appropriate style (.bst) and your own .bib file[s]
+
+%\bibliographystyle{plainnat}
+%\bibliography{mitthesis-sample.bib}
+
+\end{document}
+

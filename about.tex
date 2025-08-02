@@ -1,0 +1,24 @@
+% Author: David Sanchez-Jacome
+
+\chapter*{About this manuscript} \label{sec:about}
+\addcontentsline{toc}{chapter}{About this manuscript}
+
+% \begin{noindent}
+This manuscript was written in \href{https://en.wikipedia.org/wiki/LaTeX}{LaTeX} using \href{https://www.tug.org/texlive/}{TeX Live 2025} packages on a GNU/Linux machine running \href{https://system76.com/pop/download/}{Pop!\_OS 22.04 LTS}.
+% \end{noindent}
+The LaTeX code was compiled with \href{https://mgeier.github.io/latexmk.html}{latexmk v4.86a} using the \href{https://www.luatex.org/}{luaTEX} engine.
+The text editor I have used is \href{https://neovim.io/}{Neovim v1.11.1} in which the \href{https://github.com/lervag/vimtex}{VimTeX} plugin has been instrumental providing linting, syntax checking, templates and useful snippets to navigate a LaTeX codebase project.
+Writing LaTeX using Neovim was inspired and heavily influenced by \href{https://ejmastnak.com/tutorials/vim-latex/intro/}{this great seven-series guide} as a way to achieve fast and powerful mathematical typesetting.
+For \href{https://microsoft.github.io/language-server-protocol/}{language server protocol (LSP)} tooling \href{https://github.com/latex-lsp/texlab}{texlab v.5.22.1} and \href{https://github.com/ltex-plus/ltex-ls-plus}{LTeX+} have served as great complements for VimTeX.
+The latter has turned out to be a great tool for enhancing the limited native spelling features of Neovim.
+Automatic formatting has been performed by \href{https://github.com/FlamingTempura/bibtex-tidy}{bibytex-tidy v1.14.0} and the great \href{https://github.com/cmhughes/latexindent.pl}{latexindent.pl v3.24.5} Perl script.
+The latter has provided me with the very useful feature of one-line-per-sentence wrapping which has not only made my LaTeX code/text more readable but also has helped me to organize and synthesize my ideas when writing them down.
+The formatting rules can be found in the `format-latex.yml` file located in the `.github/` directory.
+For continuous integration (CI), GitHub actions checking the formatting rules in `format-latex.yml` have been employed on each pull request and push.
+The figures in this manuscript have mostly been created/edited using \href{https://inkscape.org/}{Inkscape v1.1} and \href{https://workspace.google.com/products/slides/}{Google Slides}.
+The template used for this manuscript was the \href{https://web.mit.edu/thesis/tex/}{MIT thesis template in LaTeX} which provided most of the classes, packages, fonts and file structure needed during the writing process.
+
+Since I have been actively working in collaborative software development for the last 4 years I decided to host this project on a \href{https://github.com/ricarvid1/dsj-thesis}{Github repo} instead of Overleaf.
+In my humble opinion, and based on this experience, if a text editor/\href{https://medium.com/@rcpassos/writing-latex-documents-in-visual-studio-code-with-latex-workshop-d9af6a6b2815}{IDE} is provisioned with the right plugins for LaTeX editing, the collaborative features of GitHub far outpace the ones offered by Overleaf.
+This \href{https://github.com/ricarvid1/dsj-thesis}{thesis GitHub repo} will be open-sourced after it has been accepted by the UPV library.
+For questions and content discussion please raise an issue in this repo.
