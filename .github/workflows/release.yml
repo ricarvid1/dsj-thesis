@@ -15,21 +15,21 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
-      # - name: Compile LaTeX document
-      #   uses: xu-cheng/latex-action@v4
-      #   with:
-      #     root_file: main.tex
-      #     latexmk_use_lualatex: true
-      #     pre_compile: "tlmgr update --self && tlmgr update --all"
-      #     post_compile: "latexmk -c"
-      # - name: rename PDF file
-      #   run: |
-      #     mv main.pdf "${{ github.event.repository.name }}_${{ github.ref_name }}.pdf"
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: main.tex
+          latexmk_use_lualatex: true
+          pre_compile: "tlmgr update --self && tlmgr update --all"
+          post_compile: "latexmk -c"
+      - name: rename PDF file
+        run: |
+          mv main.pdf "${{ github.event.repository.name }}_${{ github.ref_name }}.pdf"
       - name: Publish release
         uses: ghalactic/github-release-from-tag@v5
         with:
           generateReleaseNotes: "true"
-          # assets: |
-          #   - path: ${{ github.event.repository.name }}_${{ github.ref_name }}.pdf
-          #     name: ${{ github.event.repository.name }}_${{ github.ref_name }}.pdf
-          #     label: PDF Document
+          assets: |
+            - path: ${{ github.event.repository.name }}_${{ github.ref_name }}.pdf
+              name: ${{ github.event.repository.name }}_${{ github.ref_name }}.pdf
+              label: PDF Document
