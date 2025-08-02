@@ -13,9 +13,10 @@ This work is licensed under a Creative Commons Attribution-NonCommercial-NoDeriv
 
 [![CC BY-NC-ND 4.0](https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
-### Citation
+## Citation
 
-If you reference this thesis or use this LaTeX template, please cite:
+If you reference this thesis or the text/figures in it, please cite:
+
 David Sanchez-Jacome. "Programming Methodologies and Applications on a Multipurpose Reconfigurable Photonic Integrated Platform." Universitat Politècnica de València, 2025.
 
 ## The running platform
