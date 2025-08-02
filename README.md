@@ -13,9 +13,10 @@ This work is licensed under a Creative Commons Attribution-NonCommercial-NoDeriv
 
 [![CC BY-NC-ND 4.0](https://licensebuttons.net/l/by-nc-nd/4.0/88x31.png)](https://creativecommons.org/licenses/by-nc-nd/4.0/)
 
-### Citation
+## Citation
 
-If you reference this thesis or use this LaTeX template, please cite:
+If you reference this thesis or the text/figures in it, please cite:
+
 David Sanchez-Jacome. "Programming Methodologies and Applications on a Multipurpose Reconfigurable Photonic Integrated Platform." Universitat Politècnica de València, 2025.
 
 ## The running platform
@@ -24,6 +25,22 @@ This manuscript was written in [LaTeX](https://en.wikipedia.org/wiki/LaTeX) usin
 The LaTeX code was compiled with [latexmk v4.86a](https://mgeier.github.io/latexmk.html) using the [luaTEX](https://www.luatex.org/) engine.
 The text editor I have used is [Neovim v1.11.1](https://neovim.io/) in which the [VimTeX](https://github.com/lervag/vimtex) plugin has been instrumental providing linting, syntax checking, templates and useful snippets to navigate a LaTeX codebase project.
 Writing LaTeX using Neovim was inspired and heavily influenced by [this great seven-series guide](https://ejmastnak.com/tutorials/vim-latex/intro/) as a way to achieve fast and powerful mathematical typesetting.
+
+## Compiling the manuscript
+
+To compile the manuscipt you need to have [TeX Live](https://www.tug.org/texlive/) installed.
+The easiest way to do this is to install the full [TeX Live](https://www.tug.org/texlive/) distribution.
+If you want to install only the packages needed to compile this manuscript, I recommend using the [texliveonthefly script](https://ctan.org/pkg/texliveonfly?lang=en) to download and install any missing packages.
+Remember to use the [luaTEX](https://www.luatex.org/) engine.
+After installing all needed packages, run the following commands to compile the manuscript:
+
+```bash
+git clone git@github.com:ricarvid1/dsj-thesis.git
+cd dsj-thesis
+latexmk -lualatex main.tex
+# The output will be in the `main.pdf` file
+latexmk -c  # Clean auxiliary files (optional)
+```
 
 ## LSPs and formatting
 
