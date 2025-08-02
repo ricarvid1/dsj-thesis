@@ -26,6 +26,22 @@ The LaTeX code was compiled with [latexmk v4.86a](https://mgeier.github.io/latex
 The text editor I have used is [Neovim v1.11.1](https://neovim.io/) in which the [VimTeX](https://github.com/lervag/vimtex) plugin has been instrumental providing linting, syntax checking, templates and useful snippets to navigate a LaTeX codebase project.
 Writing LaTeX using Neovim was inspired and heavily influenced by [this great seven-series guide](https://ejmastnak.com/tutorials/vim-latex/intro/) as a way to achieve fast and powerful mathematical typesetting.
 
+## Compiling the manuscript
+
+To compile the manuscipt you need to have [TeX Live](https://www.tug.org/texlive/) installed.
+The easiest way to do this is to install the full [TeX Live](https://www.tug.org/texlive/) distribution.
+If you want to install only the packages needed to compile this manuscript, I recommend using the [texliveonthefly script](https://ctan.org/pkg/texliveonfly?lang=en) to download and install any missing packages.
+Remember to use the [luaTEX](https://www.luatex.org/) engine.
+After installing all needed packages, run the following commands to compile the manuscript:
+
+```bash
+git clone git@github.com:ricarvid1/dsj-thesis.git
+cd dsj-thesis
+latexmk -lualatex main.tex
+# The output will be in the `main.pdf` file
+latexmk -c  # Clean auxiliary files (optional)
+```
+
 ## LSPs and formatting
 
 For [language server protocol (LSP)](https://microsoft.github.io/language-server-protocol/) tooling [texlab v.5.22.1](https://github.com/latex-lsp/texlab) and [LTeX+](https://github.com/ltex-plus/ltex-ls-plus) have served as great complements for VimTeX.
