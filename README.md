@@ -1,5 +1,6 @@
 [![Formatting](https://github.com/ricarvid1/dsj-thesis/actions/workflows/format-latex.yml/badge.svg)](https://github.com/ricarvid1/dsj-thesis/actions/workflows/format-latex.yml)
 [![Build latest](https://github.com/ricarvid1/dsj-thesis/actions/workflows/build_latest.yml/badge.svg)](https://github.com/ricarvid1/dsj-thesis/actions/workflows/build_latest.yml)
+[![Publish release](https://github.com/ricarvid1/dsj-thesis/actions/workflows/release.yml/badge.svg)](https://github.com/ricarvid1/dsj-thesis/actions/workflows/release.yml)
 
 # dsj-thesis
 
