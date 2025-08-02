@@ -1,0 +1,7 @@
+# Default formatting for dsj-thesis repo
+# Add line breaks to files
+modifyLineBreaks:
+  textWrapOptions:
+    columns: 76
+  oneSentencePerLine:
+    manipulateSentences: 1

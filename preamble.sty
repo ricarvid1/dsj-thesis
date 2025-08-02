@@ -1,0 +1,284 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PREAMBLE
+
+%%%%%%%%% Packages used in sample chapters (not otherwise required) %%%%%%%
+
+%% Package for code listing in Appendix A.
+\usepackage{listings}%   documentation is here https://ctan.org/pkg/listings
+\usepackage{fontspec}
+% \setmonofont{Consolas}
+
+% Below you have a set of styles for python code to be used in the manuscript
+% Default mittemplate listing style
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{CadetBlue!15!white},
+	commentstyle=\color{Red3},
+	numberstyle=\tiny\color{gray},
+	stringstyle=\color{Blue3},
+	basicstyle=\small\ttfamily,
+	breakatwhitespace=false,
+	breaklines=true,
+	numbers=left,
+	numbersep=5pt,
+	showspaces=false,
+	showstringspaces=false,
+	showtabs=false,
+	tabsize=2
+}%
+% ========== Github Dark ========== 
+% Adapted from the Molokai implementation: https://gist.github.com/nhtranngoc/88b72d9bfb656a3de227eea38ed80627
+% Colors taken from: https://github.com/vv9k/vim-github-dark
+\definecolor{ghblack}{HTML}{0D1117}
+\definecolor{ghdarkgray}{HTML}{161B22}
+\definecolor{ghgray}{HTML}{21262D}
+\definecolor{ghlightgray}{HTML}{89929B}
+\definecolor{ghsilver}{HTML}{C6CDD5}
+\definecolor{ghwhite}{HTML}{ECF2F8}
+\definecolor{ghred}{HTML}{FA7970}
+\definecolor{ghorange}{HTML}{FAA356}
+\definecolor{ghgreen}{HTML}{7CE38B}
+\definecolor{ghlightblue}{HTML}{A2D2FB}
+\definecolor{ghblue}{HTML}{77BDFD}
+\definecolor{ghpurp}{HTML}{CEA5FB}
+
+\lstdefinestyle{githubDark}{
+	numbers=left,                   		% where to put the line-numbers
+	stepnumber=1,                   		% the step between two line-numbers.        
+	numbersep=5pt,                  		% how far the line-numbers are from the code
+	numberstyle=\tiny\color{ghsilver}\ttfamily,
+	backgroundcolor=\color{ghblack},  		% choose the background color. You must add \usepackage{color}
+	showspaces=false,               		% show spaces adding particular underscores
+	showstringspaces=false,         		% underline spaces within strings
+	showtabs=false,                 		% show tabs within strings adding particular underscores
+	tabsize=2,                      		% sets default tabsize to 2 spaces
+	captionpos=b,                   		% sets the caption-position to bottom
+	breaklines=true,                		% sets automatic line breaking
+	breakatwhitespace=true,         		% sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 		% show the filename of files included with \lstinputlisting;
+	basicstyle=\color{ghwhite}\ttfamily,					% sets font style for the code
+	keywordstyle=\color{ghred}\ttfamily,	% sets color for keywords
+	keywordstyle=[2]\color{ghorange}\bfseries,
+	stringstyle=\color{ghlightblue}\ttfamily,		% sets color for strings
+	commentstyle=\color{ghlightgray}\ttfamily,	% sets color for comments
+	emph={},	% Add here the keywords you want to emphasize
+	emphstyle=\color{ghpurp}\ttfamily
+}
+
+% ========== Listing Style 2 ========== 
+% Alternative of dark background listing
+\lstdefinestyle{listing_style_2}{
+	numbers=left,                   		% where to put the line-numbers
+	stepnumber=1,                   		% the step between two line-numbers.        
+	numbersep=5pt,                  		% how far the line-numbers are from the code
+	numberstyle=\tiny\color{ghblack}\ttfamily,
+	backgroundcolor=\color{ghgray},  		% choose the background color. You must add \usepackage{color}
+	showspaces=false,               		% show spaces adding particular underscores
+	showstringspaces=false,         		% underline spaces within strings
+	showtabs=false,                 		% show tabs within strings adding particular underscores
+	tabsize=2,                      		% sets default tabsize to 2 spaces
+	captionpos=b,                   		% sets the caption-position to bottom
+	breaklines=true,                		% sets automatic line breaking
+	breakatwhitespace=true,         		% sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 		% show the filename of files included with \lstinputlisting;
+	basicstyle=\small\color{ghwhite}\ttfamily,					% sets font style for the code
+	keywordstyle=\color{ghlightblue}\ttfamily,	% sets color for keywords
+	keywordstyle=[2]\color{ghorange}\bfseries,
+	stringstyle=\color{ghgreen}\ttfamily,		% sets color for strings
+	commentstyle=\color{ghred}\ttfamily,	% sets color for comments
+	emph={},	% Add here the keywords you want to emphasize
+	emphstyle=\color{ghpurp}\ttfamily,
+	lineskip=3pt
+}
+
+% ========== Listing Style 3 ========== 
+% Light theme
+\definecolor{ltbackground}{HTML}{F7F7F7}
+\definecolor{ltblack}{HTML}{0D1117}
+\definecolor{ltdarkgray}{HTML}{161B22}
+\definecolor{ltred}{HTML}{d52753}
+\definecolor{ltorange}{HTML}{df631c}
+\definecolor{ltgreen}{HTML}{23974a}
+\definecolor{ltlightblue}{HTML}{0098dd}
+\definecolor{ltblue}{HTML}{275fe4}
+\definecolor{ltpurp}{HTML}{823ff1}
+
+\lstdefinestyle{listing_style_3}{
+	numbers=left,                   		% where to put the line-numbers
+	stepnumber=1,                   		% the step between two line-numbers.        
+	numbersep=5pt,                  		% how far the line-numbers are from the code
+	numberstyle=\tiny\color{ltblack}\ttfamily,
+	backgroundcolor=\color{ltbackground},  		% choose the background color. You must add \usepackage{color}
+	showspaces=false,               		% show spaces adding particular underscores
+	showstringspaces=false,         		% underline spaces within strings
+	showtabs=false,                 		% show tabs within strings adding particular underscores
+	tabsize=2,                      		% sets default tabsize to 2 spaces
+	captionpos=b,                   		% sets the caption-position to bottom
+	breaklines=true,                		% sets automatic line breaking
+	breakatwhitespace=true,         		% sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 		% show the filename of files included with \lstinputlisting;
+	basicstyle=\footnotesize\color{ltdarkgray}\ttfamily,					% sets font style for the code
+	keywordstyle=\color{ltlightblue}\ttfamily,	% sets color for keywords
+	keywordstyle=[2]\color{ltorange}\bfseries,
+	stringstyle=\color{ltgreen}\ttfamily,		% sets color for strings
+	commentstyle=\color{ltred}\ttfamily,	% sets color for comments
+	emph={},	% Add here the keywords you want to emphasize
+	emphstyle=\color{ltpurp}\ttfamily,
+	lineskip=2pt
+}
+
+% ========== Listing Style 4 ========== 
+% Light theme
+\definecolor{ltbackground2}{HTML}{F7F7F7}
+\definecolor{ltblack2}{HTML}{0D1117}
+\definecolor{ltdarkgray2}{HTML}{161B22}
+\definecolor{ltred2}{HTML}{BF4E63}
+\definecolor{ltorange2}{HTML}{df631c}
+\definecolor{ltgreen2}{HTML}{197330}
+\definecolor{ltlightblue2}{HTML}{4586BF}
+\definecolor{ltpurp2}{HTML}{823ff1}
+\definecolor{ltlightgray}{HTML}{6E6E78}
+
+\lstdefinestyle{listing_style_4}{
+	numbers=left,                   		% where to put the line-numbers
+	stepnumber=1,                   		% the step between two line-numbers.        
+	numbersep=5pt,                  		% how far the line-numbers are from the code
+	numberstyle=\tiny\color{ltblack2}\ttfamily,
+	backgroundcolor=\color{ltbackground2},  		% choose the background color. You must add \usepackage{color}
+	showspaces=false,               		% show spaces adding particular underscores
+	showstringspaces=false,         		% underline spaces within strings
+	showtabs=false,                 		% show tabs within strings adding particular underscores
+	tabsize=2,                      		% sets default tabsize to 2 spaces
+	captionpos=b,                   		% sets the caption-position to bottom
+	breaklines=true,                		% sets automatic line breaking
+	breakatwhitespace=true,         		% sets if automatic breaks should only happen at whitespace
+	title=\lstname,                 		% show the filename of files included with \lstinputlisting;
+	basicstyle=\footnotesize\color{ltdarkgray2}\ttfamily,					% sets font style for the code
+	keywordstyle=\color{ltred2}\ttfamily,	% sets color for keywords
+	keywordstyle=[2]\color{ltorange2}\bfseries,
+	stringstyle=\color{ltlightblue2}\ttfamily,		% sets color for strings
+	commentstyle=\color{ltlightgray}\ttfamily,	% sets color for comments
+	emph={},	% Add here the keywords you want to emphasize
+	emphstyle=\color{ltpurp2}\ttfamily,
+	lineskip=1pt
+}
+% Style 4 is the chosen one for the moment
+\lstset{language=[3]Python, style={listing_style_4}} %
+
+%% Set chemical formulas nicely
+\usepackage[version=4]{mhchem}%   documentation at https://ctan.org/pkg/mhchem
+
+%% Latin filler used in Chapter 1, with a test for package version date (https://ctan.org/pkg/lipsum)
+\usepackage{lipsum}
+\IfPackageAtLeastTF{lipsum}{2021/09/20}{\setlipsum{auto-lang=false}}{}
+
+%% Table related packages  
+
+\usepackage{booktabs}% publication quality tables (https://ctan.org/pkg/booktabs)
+
+\usepackage{array}% Additional options for column formats (https://ctan.org/pkg/array)
+
+\usepackage{multirow}% multirow support
+
+%\usepackage{dcolumn}% For alignment of numbers on the decimal place (https://ctan.org/pkg/dcolumn) 
+%	\newcolumntype{d}[1]{D{.}{.}{#1}}% use with dcolumn package
+
+%\usepackage{tabularx}% adjustable-width columns in tabular (https://ctan.org/pkg/tabularx)
+
+%%%%%%%%%  Graphics path (to figure files)  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Can set graphicspath to point to specific directories containing figures (the current directory is searched automatically)
+%% For instance, to search a subdirectory of the current directory called "figures" and a parallel directory called "art", set:
+
+% \graphicspath{ {figures/} {../art/} }% For details see: https://latexref.xyz/dev/latex2e.html#g_t_005cgraphicspath
+
+%%%%%%%%%  Representative set-up for biblatex  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numerical citations of references
+\usepackage[style=ext-numeric-comp,giveninits=true,maxbibnames=10,sorting=none]{biblatex}
+
+%% IEEE style citations and references
+% \usepackage[style=ieee,maxbibnames=10,sorting=none]{biblatex}% style=ext-numeric-comp,articlein=false,giveninits=true
+%	 \DefineBibliographyStrings{english}{url= \textsc{url} ,  }% replaces the IEEE default "[Online]. Available" by "URL"
+
+%% author-year style citations and references 
+%% use \parencite, not \cite, when you want "(Author, year)"
+%% The sample files are not set up to include parentheses.
+% \usepackage[style=authoryear, maxbibnames=10]{biblatex} 
+
+\addbibresource{_phd-thesis.bib}%% <== change to YOUR bib file <= CHANGE
+
+%% to avoid split urls and stretched white space, you can set the bibliography ragged-right:
+%\appto{\bibsetup}{\raggedright}
+
+%% biblatex is very powerful, and you can customize most aspects the reference list and citations to suit your needs.
+%%   documentation is here: https://ctan.org/pkg/biblatex
+%%   cheat sheet is here:   https://tug.ctan.org/info/biblatex-cheatsheet/biblatex-cheatsheet.pdf
+
+%% To ensure citations are set, run Latex --> biblatex/biber --> Latex again
+
+%%%%%%%%%%  Option to use natbib   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\RequirePackage[numbers,sort&compress]{natbib}
+
+%%% add bibliography to table of contents
+%\apptocmd{\bibliography}{\addcontentsline{toc}{chapter}{\protect\textbf{\bibname}}}{}{}
+
+%%% You can use this to rename the bibliography section
+%\renewcommand{\bibname}{References}
+
+%%% To adjust space between bibliography items 
+%\setlength\bibsep{4pt plus 1pt minus 1pt}
+%   change 4pt to something else; don't drop last two lengths (they are stretchable "glue")
+
+%%%%%%%%%%  Option for "double spacing" %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Back in the typewriter era, double spaced lines were convenient for editing with a pencil. 
+%% In typography, the separation between lines is called "leading", and it is usually set in 
+%% proportion to the font size (i.e., when the font is loaded).  If you really feel the need 
+%% to change the line separation, the most attractive results will be obtained by changing the
+%% leading in proportion to the the current font size, rather than just doubling the space.
+
+%% The setspace package provides a tool for changing line separation. Use these two commands here:
+%
+% \usepackage{setspace}%  documentation at https://ctan.org/pkg/setspace
+% \setstretch{1.1}% you can choose some other value for the stretch of space between lines
+%
+%% Use one or more of the these commands *AFTER* the frontmatter
+%
+% \onehalfspacing
+% \doublespacing
+% \singlespacing  % will turn these effects off (you can use these anywhere in the document)
+
+%% The best result is usually to stay with leading selected by the typographer who set up the font.
+
+%%%%%%%%%%%  Metadata  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Most of the document metadata is created automatically. 
+% The following items should be adjusted to match your work. <================= !!!!!!!!!!
+
+\hypersetup{%
+	pdfsubject={Programming techniques for Optical FPGAs},
+	% Change this to briefly state topic of your thesis 
+	% 
+	pdfkeywords={David Sanchez-Jacome, Universitat Politecnica de Valencia, Programmable photonics, Software
+			development, Field programmable photonic gate array},
+	% Add keywords that will help search engines and libraries to find your work.
+	% Includes the name[s] of the author[s] 
+	% (If you used \DocumentMetadata at line 14, you can just put "\CopyrightAuthor," for the names.)
+	%
+	pdfurl={},
+	% If you have a url for the thesis, put it here. Otherwise delete this.
+	% (MIT Libraries will put your thesis in DSPACE with a persistent url after you submit it.)
+	%	
+	pdfcontactemail={david.sanchez@ipronics.com},
+	% You can put a [permanent] email address into the metadata, if you like.
+	% Otherwise delete this.
+	%
+	pdfauthortitle={Development of configuration strategies for photonic applications based on high-density programmable photonic integrated circuits},
+	% If you have a title, you can include it here.
+}
+
+% Add custom institution field
+\Institution{Universitat Politècnica de València}
+%%%%%%%%%%%%%%  End preamble %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

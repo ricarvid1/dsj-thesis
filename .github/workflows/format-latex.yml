@@ -1,0 +1,15 @@
+name: Formatting
+on: [push, pull_request]
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install latexindent.pl
+        run: curl -L https://github.com/cmhughes/latexindent.pl/releases/download/V3.24.4/latexindent-linux -o latexindent
+      - name: Make latexindent executable
+        run: chmod u+x latexindent
+      - name: Check version of latexindent
+        run: ./latexindent -v
+      - name: Run format check with latexindent
+        run: ./latexindent --modifylinebreaks --check --silent --local=localSettings.yaml *.tex *.sty *.cls && echo "Success!" || { cat indent.log; exit 1; }
