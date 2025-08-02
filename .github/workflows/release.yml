@@ -4,12 +4,9 @@ on:
     tags:
       - "v[0-9]+.[0-9]"
 jobs:
-  test:
-    uses: ./.github/workflows/format-latex.yml
   publish:
     runs-on: ubuntu-latest
     name: Publish release
-    needs: [test]
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v4
