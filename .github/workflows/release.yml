@@ -23,6 +23,10 @@ jobs:
       - name: rename PDF file
         run: |
           mv main.pdf "${{ github.event.repository.name }}_${{ github.ref_name }}.pdf"
+      - name: combine with covers
+        run: |
+          sudo apt install pdftk
+          pdftk front-cover.pdf "${{ github.event.repository.name }}_${{ github.ref_name }}.pdf" back-cover.pdf cat output "${{ github.event.repository.name }}_${{ github.ref_name }}-covers.pdf"
       - name: Publish release
         uses: ghalactic/github-release-from-tag@v5
         with:
@@ -30,4 +34,7 @@ jobs:
           assets: |
             - path: ${{ github.event.repository.name }}_${{ github.ref_name }}.pdf
               name: ${{ github.event.repository.name }}_${{ github.ref_name }}.pdf
-              label: PDF Document
+              label: PDF Manuscript
+            - path: ${{ github.event.repository.name }}_${{ github.ref_name }}-covers.pdf
+              name: ${{ github.event.repository.name }}_${{ github.ref_name }}-covers.pdf
+              label: PDF Manuscript (with covers)
