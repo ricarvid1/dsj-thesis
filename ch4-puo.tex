@@ -484,7 +484,7 @@ The progressive introduction of coherent technology in data centers is predicted
 A key element of these devices on the reception side is a hybrid capable of mixing the incoming signal with the local oscillator (LO) and producing a combined output with both signals out of phase by a certain $\Delta\phi$ angle between them.
 The mathematical representation of this operation is given by Eq.~\eqref{eq:mmi3} for 120$^o$ and Eq.~\eqref{eq:mmi4} for 90$^o$, which in turn corresponds to the transfer functions of 3x3 and 4x4 MMIs, respectively.
 \begin{equation}\label{eq:mmi3}
-	U = \frac{1}{\sqrt{3}}
+	U_{MMI\_3x3} = \frac{1}{\sqrt{3}}
 	\begin{bmatrix}
 		-e^{-i2\pi/3} & e^{-i2\pi/3} & -1             \\
 		e^{-i2\pi/3}  & -1           & e^{-i2\pi/3}   \\
@@ -521,7 +521,7 @@ core_monitor.plot_mesh_status()
 \end{lstlisting}
 
 \begin{equation}\label{eq:mmi4}
-	U = \frac{1}{\sqrt{4}}
+	U_{MMI\_4x4} = \frac{1}{\sqrt{4}}
 	\begin{bmatrix}
 		e^{i\pi}    & e^{-i\pi/4} & e^{i3\pi/4} & e^{i\pi}    \\
 		e^{-i\pi/4} & e^{i\pi}    & e^{i\pi}    & e^{i3\pi/4} \\
@@ -582,7 +582,7 @@ This linear operation can be represented by Eq.~\eqref{eq:dft}, which correspond
 Since the inputs to the operator have different wavelengths, the DFT phase shifts don't have any effect, and $U$ acts as a split-and-combine operator.
 
 \begin{equation}\label{eq:dft}
-	U = \frac{1}{\sqrt{6}}
+	U_{DFT\_6x6} = \frac{1}{\sqrt{6}}
 	\begin{bmatrix}
 		1 & 1           & 1           & 1  & 1           & 1           \\
 		1 & e^{i\pi/3}  & e^{2i\pi/3} & -1 & e^{i4\pi/3} & e^{i5\pi/3} \\
