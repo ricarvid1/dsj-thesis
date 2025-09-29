@@ -442,14 +442,8 @@ label={lst:ch4-beamsplitter}]
 	smart.load_feedforward_config(feedforward)
 	# Define input path to operator
 	path = [
-		(0, ["x", 0]),
-		(6, ["=", 0]),
-		(9, ["x", 0]),
-		(15, ["=", 0]),
-		(19, ["x", 0]),
-		(25, ["=", 0]),
-		(28, ["x", 0]),
-		(34, ["=", 0]),
+		(0, ["x", 0]), (6, ["=", 0]), (9, ["x", 0]), (15, ["=", 0]),
+		(19, ["x", 0]), (25, ["=", 0]), (28, ["x", 0]), (34, ["=", 0]),
 	]
 	smart.set_coupling_factor_phase(path)
 	core_monitor.plot_mesh_status()
@@ -490,7 +484,7 @@ The progressive introduction of coherent technology in data centers is predicted
 A key element of these devices on the reception side is a hybrid capable of mixing the incoming signal with the local oscillator (LO) and producing a combined output with both signals out of phase by a certain $\Delta\phi$ angle between them.
 The mathematical representation of this operation is given by Eq.~\eqref{eq:mmi3} for 120$^o$ and Eq.~\eqref{eq:mmi4} for 90$^o$, which in turn corresponds to the transfer functions of 3x3 and 4x4 MMIs, respectively.
 \begin{equation}\label{eq:mmi3}
-	U = \frac{1}{\sqrt{3}}
+	U_{MMI\_3x3} = \frac{1}{\sqrt{3}}
 	\begin{bmatrix}
 		-e^{-i2\pi/3} & e^{-i2\pi/3} & -1             \\
 		e^{-i2\pi/3}  & -1           & e^{-i2\pi/3}   \\
@@ -498,8 +492,36 @@ The mathematical representation of this operation is given by Eq.~\eqref{eq:mmi3
 	\end{bmatrix}
 \end{equation}
 
+\begin{lstlisting}[caption={Implementation of a 120$^o$ hybrid using a Feedforward operator},
+label={lst:ch4-120-hybrid}]
+# MMI_3x3: Transfer matrix of a 3-by-3 MMI
+# Generate the 3x3 feedforward operator
+feedforward_3 = smart.feedforward_operator(dim=3, puc_0=38)
+# Load the matrix in the feedforward operator
+feedforward_3.load_unitary_matrix(MMI_3x3)
+# Load the feedforward configuration into the mesh
+smart.load_feedforward_config(feedforward_3)	
+# Define AMZI path before the operator
+path = [(1, ["x", 0]), (2, ["=", 0]), (0, ["=", 0])]
+BS = [(7, [0.5, 0])]
+upper_arm = [
+    (11, ["x", 0]), (16, ["x", 0]), (20, ["x", 0]), (25, ["x", 0]),
+    (28, ["x", 0]), (34, ["=", 0]),
+]
+lower_arm = [
+    (12, ["x", 0]), (17, ["x", 0]), (23, ["x", 0]), (27, ["=", 0]), 
+    (32, ["=", 0]), (31, ["x", 0]), (30, ["=", 0]), (35, ["=", 0]),
+]
+circuit = path
+circuit += BS
+circuit += upper_arm
+circuit += lower_arm
+smart.set_coupling_factor_phase(circuit)
+core_monitor.plot_mesh_status()
+\end{lstlisting}
+
 \begin{equation}\label{eq:mmi4}
-	U = \frac{1}{\sqrt{4}}
+	U_{MMI\_4x4} = \frac{1}{\sqrt{4}}
 	\begin{bmatrix}
 		e^{i\pi}    & e^{-i\pi/4} & e^{i3\pi/4} & e^{i\pi}    \\
 		e^{-i\pi/4} & e^{i\pi}    & e^{i\pi}    & e^{i3\pi/4} \\
@@ -507,10 +529,41 @@ The mathematical representation of this operation is given by Eq.~\eqref{eq:mmi3
 		e^{i\pi}    & e^{i3\pi/4} & e^{i7\pi/4} & e^{i\pi}    \\
 	\end{bmatrix}
 \end{equation}
+
+\begin{lstlisting}[caption={Implementation of a 90$^o$ hybrid using a Feedforward operator},
+label={lst:ch4-90-hybrid}]
+# MMI_4x4: Transfer matrix of a 4-by-4 MMI
+# Create the feedforward operator
+feedforward_4x4 = smart.feedforward_operator(dim=4, puc_0=19)
+# Load the matrix in the feedforward operator
+feedforward_4x4.load_unitary_matrix(MMI_4x4)
+# Load the feedforward configuration into the mesh
+smart.load_feedforward_config(feedforward_4x4)
+# Define AMZI path before the operator
+upper_arm_4x4 = [(6, ["=", 0]), (9, ["x", 0]), (15, ["=", 0])]
+lower_arm_4x4 = [
+    (1, ["x", 0]), (2, ["=", 0]), (7, ["=", 0]), (11, ["x", 0]),
+    (16, ["=", 0]),
+]
+bs_4x4 = [(0, [0.5, 0])]
+circuit_4x4 = upper_arm_4x4
+circuit_4x4 += lower_arm_4x4
+circuit_4x4 += bs_4x4
+smart.set_coupling_factor_phase(circuit_4x4)
+# Output path 
+path_4 = [
+    (63, ["=", 0]), (66, ["x", 0]), (67, ["x", 0]), (64, ["=", 0]),
+    (68, ["x", 0]), (69, ["x", 0]),
+]
+smart.set_coupling_factor_phase(path_4)
+core_monitor.plot_mesh_status()
+\end{lstlisting}
+
 Since Equations~\eqref{eq:mmi3}, \eqref{eq:mmi4} refer to linear systems, they can easily be implemented on a hexagonal mesh using the logical unitary operator introduced in the previous section.
 To demonstrate the hybrid operation, the circuit in Fig.~\ref{fig:hybrids}(a) is synthesized on the mesh.
+Please refer to Listings~\ref{lst:ch4-120-hybrid},~\ref{lst:ch4-90-hybrid} for the code used to implement the 120$^o$ and 90$^o$ hybrids, respectively.
 Here, the injected light is split using a 3-dB coupler, and an asymmetric MZI structure is connected to the hybrid's input.
-Insets (b) and (d) show the implementation when the operator tested is a 120$^o$ hybrid ($U = $ Eq.~\eqref{eq:mmi3}), and insets (c) and (e) show the 90$^o$ case ($U = $Eq.~\eqref{eq:mmi4}).
+Insets (b) and (d) show the implementation when the operator tested is a 120$^o$ hybrid ($U = $ Eq.~\eqref{eq:mmi3}), and insets (c) and (e) show the 90$^o$ case ($U = $ Eq.~\eqref{eq:mmi4}).
 In (f) and (g), we observe the power measured at the outputs of the operator for the two cases.
 The relative phase differences are determined using the $\Delta\phi/\Delta\lambda = 2\pi/FSR$.
 The solid lines represent the experimental results, and the dotted ones are the simulated ones.
@@ -529,7 +582,7 @@ This linear operation can be represented by Eq.~\eqref{eq:dft}, which correspond
 Since the inputs to the operator have different wavelengths, the DFT phase shifts don't have any effect, and $U$ acts as a split-and-combine operator.
 
 \begin{equation}\label{eq:dft}
-	U = \frac{1}{\sqrt{6}}
+	U_{DFT\_6x6} = \frac{1}{\sqrt{6}}
 	\begin{bmatrix}
 		1 & 1           & 1           & 1  & 1           & 1           \\
 		1 & e^{i\pi/3}  & e^{2i\pi/3} & -1 & e^{i4\pi/3} & e^{i5\pi/3} \\
@@ -539,6 +592,23 @@ Since the inputs to the operator have different wavelengths, the DFT phase shift
 		1 & e^{i5\pi/3} & e^{i4\pi/3} & -1 & e^{i2\pi/3} & e^{i\pi/3}  \\
 	\end{bmatrix}
 \end{equation}
+
+\begin{lstlisting}[caption={Implementation of a multicast switch (MCS) using a Feedforward operator},
+label={lst:ch4-mcs}]
+# DFT_6x6: Transfer matrix of a DFT (N=6) operator
+feedforward = smart.feedforward_operator(dim=6, puc_0=0)
+feedforward.load_switch_config(DFT_6x6)
+smart.load_feedforward_config(feedforward)
+core_monitor.plot_mesh_status()
+# Define output paths from operator
+output_interconnects = [
+    (63, ["=", 0]), (64, ["=", 0]), (65, ["=", 0]), (66, ["x", 0]),
+    (67, ["x", 0]), (68, ["x", 0]), (69, ["x", 0]), (70, ["x", 0]),
+    (71, ["x", 0]),
+]
+smart.set_coupling_factor_phase(output_interconnects)
+core_monitor.plot_mesh_status()
+\end{lstlisting}
 
 To test this operation mode, we have created an $N=6$ logical operator, loaded the DFT matrix to it, and connected its inputs to six lasers with different wavelengths, see Fig.~\ref{fig:multicast}(b).
 As seen by a spectrum analyzer, the output from this system is shown in (c), where the spectra of the six input carriers are shown next to the spectrum of output 1.
